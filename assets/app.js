@@ -1,41 +1,106 @@
-// Create bubbles on click
-document.addEventListener('click', (e) => {
-    createBubble(e.clientX, e.clientY);
+// Logo 3D Rotation (Text-based)
+anime({
+    targets: '.logo-text',
+    rotateY: '+=360',
+    duration: 8000,
+    loop: true,
+    easing: 'linear'
   });
   
-  // Also create random bubbles automatically
-  setInterval(() => {
-    createBubble(
-      Math.random() * window.innerWidth,
-      window.innerHeight + 50
-    );
-  }, 800);
+  // Astronaut Floating Animation
+  anime({
+    targets: '.astronaut',
+    translateX: ['0', '20px', '0'],
+    rotate: ['-5deg', '5deg', '-5deg'],
+    duration: 8000,
+    loop: true,
+    easing: 'easeInOutSine'
+  });
   
-  // Bubble creation & animation
-  function createBubble(x, y) {
-    const bubble = document.createElement('div');
-    bubble.className = 'bubble';
-    document.body.appendChild(bubble);
-  
-    // Random size & color
-    const size = Math.random() * 50 + 20;
-    const hue = Math.random() * 360;
-    Object.assign(bubble.style, {
-      width: `${size}px`,
-      height: `${size}px`,
-      left: `${x - size / 2}px`,
-      top: `${y - size / 2}px`,
-      background: `hsla(${hue}, 80%, 70%, 0.6)`,
+  // Nav Link Underline Animation
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      anime({
+        targets: link,
+        translateY: -5,
+        duration: 300,
+        easing: 'easeOutExpo'
+      });
     });
+    link.addEventListener('mouseleave', () => {
+      anime({
+        targets: link,
+        translateY: 0,
+        duration: 300,
+        easing: 'easeOutExpo'
+      });
+    });
+  });
   
-    // Animate with anime.js
+  // Theme Toggler
+  document.getElementById('theme-toggler').addEventListener('click', () => {
+    const body = document.body;
+    body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     anime({
-      targets: bubble,
-      translateY: -window.innerHeight - 100,
-      opacity: 0,
-      scale: Math.random() * 0.5 + 0.5,
-      duration: Math.random() * 3000 + 2000,
-      easing: 'linear',
-      complete: () => bubble.remove(), // Remove bubble after animation
+      targets: '#theme-toggler i',
+      rotate: '+=180',
+      duration: 500
     });
-  }
+  });
+  
+  // Hero Text Animation
+  anime.timeline()
+    .add({
+      targets: '#hero-title',
+      translateY: [-50, 0],
+      opacity: [0, 1],
+      duration: 1500,
+      easing: 'easeOutExpo'
+    })
+    .add({
+      targets: '#hero-subtitle',
+      translateY: [20, 0],
+      opacity: [0, 1],
+      duration: 1000,
+      easing: 'easeOutExpo'
+    }, '-=1000');
+  
+  // CTA Button Pulse Effect
+  anime({
+    targets: '#cta-button',
+    scale: [1, 1.05, 1],
+    duration: 2000,
+    loop: true,
+    easing: 'easeInOutSine'
+  });
+  
+  // Mobile Menu Toggle (Hamburger)
+  document.querySelector('.menu-toggle').addEventListener('click', () => {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    anime({
+      targets: '.menu-toggle .bar',
+      rotate: ['0deg', '45deg'],
+      translateY: ['0px', '8px'],
+      duration: 300,
+      easing: 'easeInOutQuad'
+    });
+  });
+  
+  // Scroll-Triggered Card Animations
+  window.addEventListener('scroll', () => {
+    document.querySelectorAll('.mission-card').forEach((card, i) => {
+      const cardPosition = card.getBoundingClientRect().top;
+      const screenPosition = window.innerHeight / 1.3;
+      if (cardPosition < screenPosition) {
+        anime({
+          targets: card,
+          translateY: [100, 0],
+          opacity: [0, 1],
+          delay: i * 200,
+          duration: 1000,
+          easing: 'easeOutExpo'
+        });
+      }
+    });
+  });
