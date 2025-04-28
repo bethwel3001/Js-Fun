@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NextSpace | The Future of Exploration</title>
+  <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Background Parallax -->
+  <div class="parallax-bg"></div>
+
+  <!-- Astronaut Floating Image -->
+  <img src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+       alt="Astronaut" class="astronaut">
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <span class="logo-text">NEXTSPACE</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">Missions</a></li>
+      <li><a href="#">Technology</a></li>
+      <li><a href="#">Careers</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <button id="theme-toggler"><i class="fas fa-moon"></i></button>
+    <div class="menu-toggle">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 id="hero-title">EXPLORE BEYOND EARTH</h1>
+    <p id="hero-subtitle">NextSpace pioneers the future of interstellar travel.</p>
+    <button id="cta-button">
+      <span class="btn-text">Join the Mission</span>
+      <span class="btn-glow"></span>
+    </button>
+  </section>
+
+  <!-- 3D Mission Cards -->
+  <section class="missions">
+    <h2>OUR MISSIONS</h2>
+    <div class="card-grid">
+      <div class="mission-card">
+        <div class="card-front" style="background-image: url('https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+          <h3>Mars Colony</h3>
+        </div>
+        <div class="card-back">
+          <p>Establishing the first human settlement on Mars by 2040.</p>
+        </div>
+      </div>
+      <!-- Add 2 more cards here -->
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="./assets/app.js"></script>
+</body>
+</html>

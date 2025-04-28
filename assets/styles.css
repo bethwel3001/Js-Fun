@@ -1,0 +1,255 @@
+:root {
+  --primary: #0a192f;
+  --secondary: #64ffda;
+  --text-light: #ccd6f6;
+  --bg-dark: #020c1b;
+  --bg-light: #e6f1ff;
+}
+
+[data-theme="light"] {
+  --primary: #e6f1ff;
+  --secondary: #0a192f;
+  --text-light: #020c1b;
+  --bg-dark: #ccd6f6;
+  --bg-light: #0a192f;
+}
+
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--text-light);
+  background: var(--bg-dark);
+  overflow-x: hidden;
+}
+
+.parallax-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+/* Astronaut Image */
+.astronaut {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  right: 10%;
+  top: 30%;
+  border: 3px solid var(--secondary);
+  box-shadow: 0 0 20px var(--secondary);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Logo */
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--secondary);
+  text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  backdrop-filter: blur(10px);
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  padding: 0;
+}
+
+.nav-links a {
+  color: var(--text-light);
+  text-decoration: none;
+  position: relative;
+  font-weight: 500;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--secondary);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 15vh 5% 10vh;
+}
+
+#hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin: 0;
+}
+
+#hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  opacity: 0.8;
+  margin: 20px 0 40px;
+}
+
+/* CTA Button */
+#cta-button {
+  position: relative;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background: transparent;
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
+  border-radius: 50px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s;
+  z-index: 1;
+}
+
+.btn-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+  opacity: 0.5;
+  z-index: -1;
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+#cta-button:hover .btn-glow {
+  transform: translateX(100%);
+}
+
+#cta-button:hover {
+  box-shadow: 0 0 20px var(--secondary);
+  transform: translateY(-3px);
+}
+
+/* 3D Mission Cards */
+.missions {
+  padding: 50px 5%;
+  text-align: center;
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.mission-card {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  cursor: pointer;
+}
+
+.mission-card:hover {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+}
+
+.card-front {
+  background-size: cover !important;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-back {
+  background: rgba(10, 25, 47, 0.9);
+  transform: rotateY(180deg);
+  color: var(--text-light);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Theme Toggler */
+#theme-toggler {
+  background: transparent;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+#theme-toggler:hover {
+  transform: scale(1.1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  nav {
+    padding: 15px 5%;
+  }
+
+  .nav-links {
+    display: none; /* Hamburger menu logic in JS */
+  }
+
+  .astronaut {
+    width: 100px;
+    height: 100px;
+    right: 5%;
+    top: 20%;
+  }
+
+  .hero {
+    padding: 10vh 5%;
+  }
+
+  .card-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mission-card {
+    width: 90%;
+    height: 350px;
+  }
+}
